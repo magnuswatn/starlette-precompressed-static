@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.6.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "starlette-precompressed-static"
+version = "2022.8.14"
+description = "A small library for Starlette, to serve pre-compressed static resources"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Magnus Watn", email = "magnus@watn.no" }]
+keywords = [
+    "starlette",
+    "static",
+    "pre-compressed",
+    "resources",
+    "brotli",
+    "gzip",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = ["starlette"]
+
+[project.optional-dependencies]
+test = ["pytest", "requests"]
+
+[project.urls]
+Homepage = "https://github.com/magnuswatn/starlette-precompressed-static"
+
+[tool.hatch.build]
+packages = ["starlette_precompressed_static.py"]
+
+[tool.isort]
+profile = "black"

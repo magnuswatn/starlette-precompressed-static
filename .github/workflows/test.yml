@@ -1,0 +1,39 @@
+---
+name: Test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: "Python ${{ matrix.python-version }}"
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11.0-beta - 3.11"]
+
+    steps:
+      - uses: "actions/checkout@v3"
+        with:
+          persist-credentials: false
+      - uses: "actions/setup-python@v3"
+        with:
+          python-version: "${{ matrix.python-version }}"
+      - name: "Install dependencies"
+        run: |
+          set -xe
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip
+          pip install .[test]
+      - name: "Run pytest for Python ${{ matrix.python-version }}"
+        run: "pytest"

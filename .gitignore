@@ -1,0 +1,6 @@
+__pycache__/
+Pipfile.lock
+.vscode
+build/
+dist/
+hastighetstest.py
