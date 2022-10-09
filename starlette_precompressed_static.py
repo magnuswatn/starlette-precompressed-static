@@ -50,11 +50,11 @@ class PreCompressedStaticFiles(StaticFiles):
             else:
                 raise
 
-        if isinstance(response, (FileResponse, NotModifiedResponse)):
-            if encoding == Encoding.BROTLI:
-                response.headers["Content-Encoding"] = Encoding.BROTLI.value
-            elif encoding == Encoding.GZIP:
-                response.headers["Content-Encoding"] = Encoding.GZIP.value
+        if (
+            isinstance(response, (FileResponse, NotModifiedResponse))
+            and encoding is not None
+        ):
+            response.headers["Content-Encoding"] = encoding.value
 
         response.headers.add_vary_header("Accept-Encoding")
 
