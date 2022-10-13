@@ -29,7 +29,7 @@ classifiers = [
 dependencies = ["starlette"]
 
 [project.optional-dependencies]
-test = ["pytest", "requests"]
+test = ["pytest", "httpx"]
 
 [project.urls]
 Homepage = "https://github.com/magnuswatn/starlette-precompressed-static"
